@@ -2,7 +2,7 @@
 	Project AZUSA © 2015 ( https://github.com/Project-AZUSA )
 	E-mote Sample - "NekoHacks" Preview
 	LICENSE:CC 3.0 BY-NC-SA (CC 署名-非商业性使用-相同方式共享 3.0 中国大陆)
-	Author:	UlyssesWu (wdwxy12345@gmail.com)
+	AUTHOR:	UlyssesWu (wdwxy12345@gmail.com)
 	Modified from E-mote SDK DX version for YU-RIS
 
 	NOTICE: 由于E-mote SDK经常出现变动，要显示你想要采用的立绘，需要从来源处取得emotedriver.dll。不同版本的emotedriver通常不通用。
