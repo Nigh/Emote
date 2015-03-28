@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EmoteSamle-Win32", "EmoteSample-Win32-DX9\sample.vcxproj", "{B4EFCD01-44FA-49EB-A9A5-85E825FE145D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EmoteSample-Win32", "EmoteSample-Win32-DX9\sample.vcxproj", "{B4EFCD01-44FA-49EB-A9A5-85E825FE145D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EmoteNet", "EmoteNet\EmoteNet.vcxproj", "{1BFB121F-5CFB-4F0E-940C-FA3918918B08}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NekoSpritePreview", "EmoteNetSample\NekoSpritePreview.csproj", "{B902DCC0-C695-4440-8A97-B92A3BFCE6B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmoteNetSample-WPF", "EmoteNetSample-WPF\EmoteNetSample-WPF.csproj", "{49ED6374-A267-4CD8-9708-8A900DCDC463}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,16 @@ Global
 		{B902DCC0-C695-4440-8A97-B92A3BFCE6B1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B902DCC0-C695-4440-8A97-B92A3BFCE6B1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B902DCC0-C695-4440-8A97-B92A3BFCE6B1}.Release|Win32.ActiveCfg = Release|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{49ED6374-A267-4CD8-9708-8A900DCDC463}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

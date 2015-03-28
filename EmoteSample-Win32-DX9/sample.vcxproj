@@ -14,7 +14,7 @@
     <ProjectGuid>{B4EFCD01-44FA-49EB-A9A5-85E825FE145D}</ProjectGuid>
     <RootNamespace>AZUSA.Emote.Sample</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>EmoteSamle-Win32</ProjectName>
+    <ProjectName>EmoteSample-Win32</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -66,6 +66,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\Program Files (x86)\Microsoft DirectX SDK (February 2010)\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -84,6 +85,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\Program Files (x86)\Microsoft DirectX SDK (February 2010)\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -98,8 +100,8 @@
     <ClCompile Include="uImageDC.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="emotedriver-yuris.dll" />
     <None Include="emotedriver.dll" />
+    <None Include="yurisdriver.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

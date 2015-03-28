@@ -12,20 +12,23 @@
 
 using System;
 using System.Threading;
+using System.Windows.Forms;
 using SharpDX.Direct3D9;
 using SharpDX.Windows;
 using Color = SharpDX.Color;
-using EmoteNet;
+using AZUSA.EmoteNet;
 using Font = SharpDX.Direct3D9.Font;
 
-namespace NekoSprite
+namespace NekoHacks
 {
     class Program
     {
+        static private Emote e;
         const double F60THSTOMS = 1000.0f / 60.0f;
-        private static double elaspedTime = 2*F60THSTOMS;
+        private static double elaspedTime = 1 * F60THSTOMS;
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
             double processTime = 0.0;
             double wait = 0.0;
             FontDescription fontDescription;
@@ -35,20 +38,20 @@ namespace NekoSprite
 
             DateTime lastTime = DateTime.Now;
             var form = new RenderForm("AZUSA E-mote Sample - NekoSprite");
-            
+
             int width = form.ClientSize.Width;
             int height = form.ClientSize.Height;
 
-            form.TopMost = true;
-            
+            //form.TopMost = true;
+
             form.Width = 1280;
             form.Height = 720;
-
-            Emote e = new Emote(form.Handle, 1280, 720);
+            TimeSpan.FromSeconds(1000).ToString("");
+            e = new Emote(form.Handle, 1280, 720);
             e.EmoteInit("dx_e-mote3.0バニラ私服b_鈴あり.psb");
 
             var device = new Device(new IntPtr(e.D3Device));
-            
+
             // Initialize the Font
             fontDescription = new FontDescription()
             {
@@ -62,15 +65,25 @@ namespace NekoSprite
                 Quality = FontQuality.ClearType,
                 Weight = FontWeight.Bold
             };
-            
+
             font = new Font(device, fontDescription);
 
             displayText = "NekoSprite\nProject AZUSA © 2015";
-
             // Measure the text to display
-            fontDimension = font.MeasureText(null, displayText, new SharpDX.Rectangle(0, form.Height * 2 / 3, form.Width, form.Height /3), FontDrawFlags.Center | FontDrawFlags.VerticalCenter);
+            fontDimension = font.MeasureText(null, displayText, new SharpDX.Rectangle(0, form.Height * 2 / 3, form.Width, form.Height / 3), FontDrawFlags.Center | FontDrawFlags.VerticalCenter);
 
             e.EmoteOffsetScale(0.5f);
+            e.EmotePlayer.StartWind(0f, 1f, 0.8f, 0.5f, 0.8f);
+            e.EmotePlayer.SetSmoothing(true);
+            var ctrlform = new FormConsole(e.EmotePlayer, "香草");
+            //ctrlform.TopMost = true;
+            ctrlform.Show();
+            //Control
+            form.MouseDown += form_MouseDown;
+            form.MouseMove += form_MouseMove;
+            form.MouseUp += form_MouseUp;
+            form.MouseWheel += (sender, eventArgs) => e.EmoteOffsetScale(1 + ConvertDelta(eventArgs.Delta));
+
             RenderLoop.Run(form, () =>
             {
                 e.EmoteUpdate((float)processTime);
@@ -79,7 +92,7 @@ namespace NekoSprite
                 device.BeginScene();
 
                 e.EmoteDraw();
-                
+
                 font.DrawText(null, displayText, fontDimension, FontDrawFlags.Center | FontDrawFlags.VerticalCenter, SharpDX.Color.Black);
 
                 device.EndScene();
@@ -100,5 +113,43 @@ namespace NekoSprite
 
             });
         }
+
+        static private int lastX = 0, lastY = 0;
+        static private bool leftMouseDown = false;
+        private static bool rightMouseDown = false;
+
+        static void form_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                leftMouseDown = false;
+            }
+        }
+
+        static void form_MouseMove(object sender, MouseEventArgs ex)
+        {
+            if (leftMouseDown)
+            {
+                e.EmoteOffsetCoord(ex.X - lastX, ex.Y - lastY);
+                lastX = ex.X;
+                lastY = ex.Y;
+            }
+        }
+
+        static void form_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                leftMouseDown = true;
+                lastX = e.X;
+                lastY = e.Y;
+            }
+        }
+
+        private static float ConvertDelta(int delta)
+        {
+            return delta / 120.0f / 50.0f;
+        }
+
     }
 }

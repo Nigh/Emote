@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "EmoteNet"
+    </assembly>
+    <members>
+        <member name="P:AZUSA.EmoteNet.Emote.EmotePlayer">
+            <summary>
+E-mote Player低层API
+</summary>
+        </member>
+        <member name="P:AZUSA.EmoteNet.Emote.SurfaceHeight">
+            <summary>
+Surface高
+</summary>
+        </member>
+        <member name="P:AZUSA.EmoteNet.Emote.SurfaceWidth">
+            <summary>
+Surface宽
+</summary>
+        </member>
+        <member name="P:AZUSA.EmoteNet.Emote.UseD3DSurface">
+            <summary>
+是否使用Surface
+</summary>
+        </member>
+        <member name="P:AZUSA.EmoteNet.Emote.D3DSurface">
+            <summary>
+D3D Surface指针
+</summary>
+        </member>
+        <member name="P:AZUSA.EmoteNet.Emote.D3Device">
+            <summary>
+D3D设备指针
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DEndScene">
+            <summary>
+D3D结束渲染
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DBeginScene">
+            <summary>
+D3D开始渲染
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteRelease">
+            <summary>
+E-mote释放资源
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DRelease">
+            <summary>
+D3D释放资源
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteSwitchMouth">
+            <summary>
+E-mote切换口型
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteOffsetRot(System.Single)">
+            <summary>
+E-mote设置旋转
+</summary>
+            <param name="ofstRot">旋转增量百分比</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteOffsetScale(System.Single)">
+            <summary>
+E-mote设置缩放
+</summary>
+            <param name="ofstScale">缩放增量百分比</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteOffsetCoord(System.Int32,System.Int32)">
+            <summary>
+E-mote设置偏移
+</summary>
+            <param name="ofsx">横向偏移</param>
+            <param name="ofsy">竖向偏移</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteDraw">
+            <summary>
+E-mote绘制
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteUpdate(System.Single)">
+            <summary>
+E-mote更新
+</summary>
+            <param name="ms">间隔时间（ms）</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteInit(System.String)">
+            <summary>
+E-mote初始化
+</summary>
+            <param name="path">立绘文件路径</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DInit(System.ValueType!System.IntPtr!System.Runtime.CompilerServices.IsBoxed,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+D3D初始化
+</summary>
+            <param name="handle">窗口句柄</param>
+            <param name="width">渲染区宽度</param>
+            <param name="height">渲染区高度</param>
+            <param name="useD3DSurface">是否使用Surface</param>
+            <returns />
+        </member>
+        <member name="T:AZUSA.EmoteNet.Emote">
+            <summary>
+E-mote
+</summary>
+        </member>
+    </members>
+</doc>

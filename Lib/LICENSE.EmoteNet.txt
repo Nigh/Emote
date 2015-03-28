@@ -1,0 +1,7 @@
+Emote.NET LICENSE
+
+All programs/software that use this library must follow GPLv2/GPLv3.
+But with library's developer's permission, you can have special license.
+
+---
+by Ulysses
