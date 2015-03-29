@@ -15,6 +15,12 @@ E-mote.NET正在开发中，当前暂无更多说明。
 
 CC 3.0 BY-NC-SA
 
+## DEMO ##
+
+知道没有图你们是不会来的……
+
+![NekoConsole](https://github.com/Project-AZUSA/E-mote/raw/master/EmoteNetSample/DEMO.gif)
+
 ----------
 by Ulysses
 
