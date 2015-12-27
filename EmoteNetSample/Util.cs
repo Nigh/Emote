@@ -203,7 +203,6 @@ namespace NekoHacks
         /// <returns></returns>      
         public static byte[] ImageToBytes(Image image, System.Drawing.Imaging.ImageFormat imageFormat)
         {
-            //image = image.GetThumbnailImage(1366, 768, null, IntPtr.Zero);
             if (image == null)
             { return null; }
             byte[] data = null;
@@ -218,13 +217,6 @@ namespace NekoHacks
                     ms.Flush();
                 }
             }
-            //using (FileStream fs = new FileStream("1.png",FileMode.Create))
-            //{
-            //    using (Bitmap bitmap = new Bitmap(image))
-            //    {
-            //        bitmap.Save(fs, imageFormat);
-            //    }
-            //}
             return data;
         }
 

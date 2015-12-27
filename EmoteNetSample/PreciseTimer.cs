@@ -7,7 +7,6 @@ namespace NekoHacks
     /// </summary>
     public class PreciseTimer
     {
-        //大量C库导入……
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("kernel32")]
         private static extern bool QueryPerformanceFrequency(ref long PerformanceFrequency);
@@ -30,9 +29,5 @@ namespace NekoHacks
             _previousElapsedTime = time;
             return elapsedTime;
         }
-        //QueryPerformanceFrequency用于获取高分辨率性能计时器的频率。
-        //QueryPerformanceCounter用于获取计时器的当前值。
-        //结合起来确定最后一帧用了多长时间。
-        //GetElaspedTime应该每帧调用一次，它会记录帧之间经过的时间。
     }
 }

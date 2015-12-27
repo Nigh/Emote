@@ -4,8 +4,8 @@
  *  LICENSE:CC 3.0 BY-NC-SA (CC 署名-非商业性使用-相同方式共享 3.0 中国大陆)
  *  AUTHOR:	UlyssesWu (wdwxy12345@gmail.com)
  *  NOTICE: 当前E-mote.NET版本为nekopara版本，但本实例中不包含nekopara的立绘文件。
- *          在WPF中使用非常非常耗费CPU和内存资源！这是因为E-mote SDK不支持DX9Ex，所有绘制经过了一次复制。
- *          WARNING:Very CPU and Memory costly! Without DX9Ex support in E-mote SDK, all frames need to be copied when rendering.
+ *          在WPF中使用可能非常耗费CPU和内存资源！
+ *          WARNING:May be very CPU and Memory costly! Without DX9Ex support in E-mote SDK, all frames need to be copied when rendering.
  *          
  */
 

@@ -15,18 +15,16 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using AZUSA.EmoteNet;
 using SharpDX.Direct3D9;
 using SharpDX.Windows;
 using Color = SharpDX.Color;
-using AZUSA.EmoteNet;
-using Point = System.Drawing.Point;
-using Rectangle = System.Drawing.Rectangle;
 
 namespace NekoHacks
 {
     class Program
     {
-        const double REFRESH = 1.0 / 50.0;
+        const double REFRESH = 1.0/50.0;
         const int WIDTH = 900;
         const int HEIGHT = 600;
 
@@ -36,12 +34,16 @@ namespace NekoHacks
         private static EmotePlayer _player;
         private static EmotePlayer _player2;
         private static PreciseTimer _timer = new PreciseTimer();
-        private static double elaspedTime = 0;
+        private static double elaspedTime;
         private static Device _device;
         private static Rectangle _screenRect;
         private static Texture _wallpaper;
         private static Sprite _sprite;
         private static SharpDX.Color _color = new SharpDX.ColorBGRA(0xffffffff);
+
+        static private int lastX, lastY;
+        static private bool leftMouseDown;
+        private static bool rightMouseDown;
 
         static unsafe void Main(string[] args)
         {
@@ -85,18 +87,18 @@ namespace NekoHacks
             _player.Show();
             _player2.Show();
 
-            var faceTable = new Dictionary<string, float>()
+            var faceTable = new Dictionary<string, float>
             {
-                    { "face_eye_UD", -30f },
-                    { "face_eye_LR", 0.0f },
-                    { "face_eye_open", 5 },
-                    { "face_eyebrow", 20f },
-                    { "face_mouth", 20 },
-                    { "face_talk", 0.5f },
-                    { "face_tears", 0.0f },
-                    { "face_cheek", 0.0f },
+                {"face_eye_UD", -30f},
+                {"face_eye_LR", 0.0f},
+                {"face_eye_open", 5},
+                {"face_eyebrow", 20f},
+                {"face_mouth", 20},
+                {"face_talk", 0.5f},
+                {"face_tears", 0.0f},
+                {"face_cheek", 0.0f}
             };
-            
+
             _device = new Device(new IntPtr(e.D3Device));
 
             //// Initialize the Font
@@ -134,9 +136,11 @@ namespace NekoHacks
             Thread th = new Thread(() =>
             {
                 var ctrlform2 = new FormConsole(_player2, "巧克力");
-                ctrlform2.Closed += (sender, eventArgs) => {
-                    e.DeletePlayer(_player2); //Try to close this form, the memory will be released
-                };
+                ctrlform2.Closed +=
+                    (sender, eventArgs) =>
+                    {
+                        e.DeletePlayer(_player2); //Try to close this form, the memory will be released
+                    };
                 ctrlform2.Show();
                 var ctrlform = new FormConsole(_player, "香草");
                 //ctrlform.Show();
@@ -159,7 +163,7 @@ namespace NekoHacks
             while (imageSize > 0)
             {
                 //BGRA
-                byte gray = (byte)(0.298912f * image[2] + 0.586611f * image[1] + 0.114478f * image[0]);
+                byte gray = (byte) (0.298912f*image[2] + 0.586611f*image[1] + 0.114478f*image[0]);
                 image[0] = image[1] = image[2] = gray;
                 //image[3] = (byte)(image[3] * 0.5f); //Alpha
                 image += 4;
@@ -183,7 +187,7 @@ namespace NekoHacks
                 Thread.Sleep(1);
                 return;
             }
-            e.Update((float)REFRESH * 1000);
+            e.Update((float) REFRESH*1000);
             _device.Clear(ClearFlags.Target, Color.Transparent, 1.0f, 0);
 
             _device.BeginScene();
@@ -202,16 +206,12 @@ namespace NekoHacks
 
         private static void FormOnResize(object sender, EventArgs eventArgs)
         {
-            var form = (Form)sender;
-            int[] margins = new int[] { 0, 0, form.Width, form.Height };
+            var form = (Form) sender;
+            int[] margins = {0, 0, form.Width, form.Height};
 
             // Extend aero glass style to whole form
             Util.DwmExtendFrameIntoClientArea(form.Handle, ref margins);
         }
-
-        static private int lastX = 0, lastY = 0;
-        static private bool leftMouseDown = false;
-        private static bool rightMouseDown = false;
 
         static void form_MouseUp(object sender, MouseEventArgs e)
         {
@@ -236,7 +236,7 @@ namespace NekoHacks
             }
         }
 
-        static void form_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        static void form_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -252,8 +252,7 @@ namespace NekoHacks
 
         private static float ConvertDelta(int delta)
         {
-            return delta / 120.0f / 50.0f;
+            return delta/120.0f/50.0f;
         }
-
     }
 }
