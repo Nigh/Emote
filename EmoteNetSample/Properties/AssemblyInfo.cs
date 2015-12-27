@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("NekoSpritePreview")]
-[assembly: AssemblyDescription("Emote.Net Sample. By Ulysses.")]
+[assembly: AssemblyDescription("Emote.Net Sample by Ulysses.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Project AZUSA")]
 [assembly: AssemblyProduct("NekoSprite")]
 [assembly: AssemblyCopyright("Copyright © Project AZUSA 2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("wdwxy12345@gmail.com")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 使此程序集中的类型

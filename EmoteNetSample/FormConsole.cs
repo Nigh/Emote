@@ -135,7 +135,7 @@ namespace NekoHacks
             {
                 Console.WriteLine(emote.GetVariableLabelAt(i));
                 ArgTrackBar temp = new ArgTrackBar(emote.GetVariableLabelAt(i),
-                    ConvertToInt(emote.GetVariable(emote.GetVariableLabelAt(i))),-5000,5000);
+                    ConvertToInt(emote.GetVariable(emote.GetVariableLabelAt(i))),-4097, 4097);
                 temp.OnValueChanged += SetVariable;
                 argTracks.TryAdd(emote.GetVariableLabelAt(i), temp);
             }
@@ -197,6 +197,10 @@ namespace NekoHacks
         void btn_Click(object sender, EventArgs e)
         {
             emote.PlayTimeline(((Button)sender).Text,TimelinePlayFlags.NONE);
+        }
+
+        private void FormConsole_FormClosing(object sender, FormClosingEventArgs e)
+        {
         }
     }
 }
