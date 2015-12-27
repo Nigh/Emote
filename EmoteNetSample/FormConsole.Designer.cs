@@ -99,6 +99,7 @@
             this.Name = "FormConsole";
             this.ShowIcon = false;
             this.Text = "猫娘控制台";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormConsole_FormClosing);
             this.Load += new System.EventHandler(this.FormConsole_Load);
             this.panelCtrl.ResumeLayout(false);
             this.panelCtrl.PerformLayout();

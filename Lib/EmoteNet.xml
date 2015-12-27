@@ -4,9 +4,12 @@
         "EmoteNet"
     </assembly>
     <members>
-        <member name="P:AZUSA.EmoteNet.Emote.EmotePlayer">
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteInit(System.IntPtr)">
             <summary>
 E-mote Player低层API
+</summary>
+            <summary>
+E-mote初始化
 </summary>
         </member>
         <member name="P:AZUSA.EmoteNet.Emote.SurfaceHeight">
@@ -34,6 +37,11 @@ D3D Surface指针
 D3D设备指针
 </summary>
         </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DAfterPresentSetTransparentWindow">
+            <summary>
+D3D结束渲染后将Surface复制到窗口以显示为不规则透明窗口
+</summary>
+        </member>
         <member name="M:AZUSA.EmoteNet.Emote.D3DEndScene">
             <summary>
 D3D结束渲染
@@ -44,58 +52,54 @@ D3D结束渲染
 D3D开始渲染
 </summary>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.EmoteRelease">
-            <summary>
-E-mote释放资源
-</summary>
-        </member>
         <member name="M:AZUSA.EmoteNet.Emote.D3DRelease">
             <summary>
 D3D释放资源
 </summary>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.EmoteSwitchMouth">
+        <member name="M:AZUSA.EmoteNet.Emote.DeletePlayer(AZUSA.EmoteNet.EmotePlayer)">
             <summary>
-E-mote切换口型
+删除E-mote Player（删除后会立即释放其资源）
 </summary>
+            <param name="player">EmotePlayer对象</param>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.EmoteOffsetRot(System.Single)">
+        <member name="M:AZUSA.EmoteNet.Emote.DeletePlayer(System.String)">
             <summary>
-E-mote设置旋转
+删除E-mote Player
 </summary>
-            <param name="ofstRot">旋转增量百分比</param>
+            <param name="player">EmotePlayer名</param>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.EmoteOffsetScale(System.Single)">
+        <member name="M:AZUSA.EmoteNet.Emote.CreatePlayer(System.String,System.String[])">
             <summary>
-E-mote设置缩放
+[Obsolete]创建E-mote Player
 </summary>
-            <param name="ofstScale">缩放增量百分比</param>
+            <param name="name">名字(不可重复)</param>
+            <param name="paths">立绘文件路径</param>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.EmoteOffsetCoord(System.Int32,System.Int32)">
+        <member name="M:AZUSA.EmoteNet.Emote.CreatePlayer(System.String,System.String)">
             <summary>
-E-mote设置偏移
+创建E-mote Player
 </summary>
-            <param name="ofsx">横向偏移</param>
-            <param name="ofsy">竖向偏移</param>
+            <param name="name">名字(不可重复)</param>
+            <param name="path">立绘文件路径</param>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.EmoteDraw">
+        <member name="M:AZUSA.EmoteNet.Emote.Draw">
             <summary>
 E-mote绘制
 </summary>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.EmoteUpdate(System.Single)">
+        <member name="M:AZUSA.EmoteNet.Emote.Update(System.Single)">
             <summary>
 E-mote更新
 </summary>
-            <param name="ms">间隔时间（ms）</param>
+            <param name="frameCount">经过的帧数（frame count）,1/60秒为单位</param>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.EmoteInit(System.String)">
+        <member name="M:AZUSA.EmoteNet.Emote.EmoteInit">
             <summary>
 E-mote初始化
 </summary>
-            <param name="path">立绘文件路径</param>
         </member>
-        <member name="M:AZUSA.EmoteNet.Emote.D3DInit(System.ValueType!System.IntPtr!System.Runtime.CompilerServices.IsBoxed,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:AZUSA.EmoteNet.Emote.D3DInit(System.IntPtr,System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
 D3D初始化
 </summary>
@@ -103,12 +107,63 @@ D3D初始化
             <param name="width">渲染区宽度</param>
             <param name="height">渲染区高度</param>
             <param name="useD3DSurface">是否使用Surface</param>
+            <param name="setTransparent">是否设置透明窗口（若设置，必须使用Surface）</param>
             <returns />
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.#ctor(System.IntPtr)">
+            <summary>
+E-mote
+<para>使用此版本的构造函数不需要调用<see cref="M:AZUSA.EmoteNet.Emote.D3DInit(System.IntPtr,System.Int32,System.Int32,System.Boolean,System.Boolean)" />和<see cref="M:AZUSA.EmoteNet.Emote.EmoteInit" />。请手动创建DX9设备</para></summary>
+            <param name="dxHandle">DX9 Device指针</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.Dispose">
+            <summary>
+E-mote释放资源
+</summary>
         </member>
         <member name="T:AZUSA.EmoteNet.Emote">
             <summary>
 E-mote
 </summary>
+        </member>
+        <member name="P:AZUSA.EmoteNet.EmoteDevice.TextureFilter">
+            <summary>
+纹理预处理函数
+<para><see cref="!:T:byte[]" /> image字节数组（默认颜色格式为BGRA）; <see cref="!:uint" /> 数组长度</para></summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.EmoteDevice.OnDeviceLost">
+            <summary>
+恢复状态（从Device Lost状态复原）
+<para>当IDirect3DDevice9::Present()检测到设备丢失时，在IDirect3DDevice9::Reset()调用之前请调用此函数。</para><para>在内部进行资源的保存和设备恢复的准备。</para></summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.EmoteDevice.Release">
+            <summary>
+减少引用计数，当引用计数为0时自动释放自身
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.EmoteDevice.AddRef">
+            <summary>
+增加引用计数
+<para>手动增加的要手动负责<see cref="M:AZUSA.EmoteNet.EmoteDevice.Release" /></para></summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.EmotePlayer.OffsetRot(System.Single)">
+            <summary>
+设置旋转
+</summary>
+            <param name="ofstRot">旋转增量百分比</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.EmotePlayer.OffsetScale(System.Single)">
+            <summary>
+设置缩放
+</summary>
+            <param name="ofstScale">缩放增量百分比</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.EmotePlayer.OffsetCoord(System.Int32,System.Int32)">
+            <summary>
+设置偏移
+</summary>
+            <param name="ofsx">横向偏移</param>
+            <param name="ofsy">竖向偏移</param>
         </member>
     </members>
 </doc>

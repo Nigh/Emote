@@ -8,12 +8,12 @@ using System.Windows;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Emote.NET WPF Sample")]
-[assembly: AssemblyDescription("Emote.NET Sample for WPF.")]
+[assembly: AssemblyDescription("Emote.NET Sample for WPF by Ulysses.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Project AZUSA")]
 [assembly: AssemblyProduct("EmoteNetSample")]
 [assembly: AssemblyCopyright("Copyright © Project AZUSA 2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("wdwxy12345@gmail.com")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 使此程序集中的类型

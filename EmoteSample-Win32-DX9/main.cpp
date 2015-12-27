@@ -766,7 +766,7 @@ D3DInit(void)
   // Enable alpha blending.
   sD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 
-  //ADDED
+  //ADDED:
   g_dcSurface.Create(SCREEN_WIDTH, -SCREEN_HEIGHT);
   SetWindowLong(sHwnd, GWL_EXSTYLE, (GetWindowLong(sHwnd, GWL_EXSTYLE) & ~WS_EX_TRANSPARENT) | WS_EX_LAYERED);
   ::SetActiveWindow(sHwnd);
