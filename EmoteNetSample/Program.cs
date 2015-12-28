@@ -16,15 +16,18 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using AZUSA.EmoteNet;
+using SharpDX;
 using SharpDX.Direct3D9;
 using SharpDX.Windows;
 using Color = SharpDX.Color;
+using Point = System.Drawing.Point;
+using Rectangle = System.Drawing.Rectangle;
 
 namespace NekoHacks
 {
     class Program
     {
-        const double REFRESH = 1.0/50.0;
+        const double REFRESH = 1.0 / 50.0;
         const int WIDTH = 900;
         const int HEIGHT = 600;
 
@@ -69,7 +72,6 @@ namespace NekoHacks
             e = new Emote(form.Handle, WIDTH, HEIGHT, false);
             e.EmoteInit();
             e.Device.TextureFilter = GrayTextureFilter;
-
             if (EnableTransparentWindow)
             {
                 e = new Emote(form.Handle, WIDTH, HEIGHT, true, true);
@@ -163,7 +165,7 @@ namespace NekoHacks
             while (imageSize > 0)
             {
                 //BGRA
-                byte gray = (byte) (0.298912f*image[2] + 0.586611f*image[1] + 0.114478f*image[0]);
+                byte gray = (byte)(0.298912f * image[2] + 0.586611f * image[1] + 0.114478f * image[0]);
                 image[0] = image[1] = image[2] = gray;
                 //image[3] = (byte)(image[3] * 0.5f); //Alpha
                 image += 4;
@@ -187,14 +189,49 @@ namespace NekoHacks
                 Thread.Sleep(1);
                 return;
             }
-            e.Update((float) REFRESH*1000);
+
+            e.Update((float)REFRESH * 1000);
+
             _device.Clear(ClearFlags.Target, Color.Transparent, 1.0f, 0);
 
             _device.BeginScene();
             //device.UpdateSurface(device.GetBackBuffer(0,0),new Surface(new IntPtr(e.D3DSurface)));
             e.Draw();
             _device.EndScene();
-            _device.Present();
+            try
+            {
+                _device.Present();
+            }
+            catch (SharpDXException exception)
+            {
+                if (exception.ResultCode == ResultCode.DeviceLost)
+                {
+                    Console.WriteLine("Device Lost Detected");
+                    e.OnDeviceLost();
+                    Result r;
+                    while ((r = _device.TestCooperativeLevel()) == ResultCode.DeviceLost)
+                    {
+                        Thread.Sleep(5);
+                    }
+                    r = _device.TestCooperativeLevel();
+                    if (r == ResultCode.DeviceNotReset)
+                    {
+                        e.D3DReset();
+                        e.OnDeviceReset();
+                        //e.D3DInitRenderState();
+                    }
+                    else
+                    {
+                        Console.WriteLine(r);
+                    }
+                    //r = _device.TestCooperativeLevel();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
             if (EnableTransparentWindow)
             {
                 e.D3DAfterPresentSetTransparentWindow();
@@ -206,8 +243,8 @@ namespace NekoHacks
 
         private static void FormOnResize(object sender, EventArgs eventArgs)
         {
-            var form = (Form) sender;
-            int[] margins = {0, 0, form.Width, form.Height};
+            var form = (Form)sender;
+            int[] margins = { 0, 0, form.Width, form.Height };
 
             // Extend aero glass style to whole form
             Util.DwmExtendFrameIntoClientArea(form.Handle, ref margins);
@@ -252,7 +289,7 @@ namespace NekoHacks
 
         private static float ConvertDelta(int delta)
         {
-            return delta/120.0f/50.0f;
+            return delta / 120.0f / 50.0f;
         }
     }
 }

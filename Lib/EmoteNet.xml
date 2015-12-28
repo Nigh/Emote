@@ -83,25 +83,69 @@ D3D释放资源
             <param name="name">名字(不可重复)</param>
             <param name="path">立绘文件路径</param>
         </member>
+        <member name="M:AZUSA.EmoteNet.Emote.Show">
+            <summary>
+E-mote开始显示（作用于全部Player）
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.Skip">
+            <summary>
+E-mote跳过（作用于全部Player）
+</summary>
+        </member>
         <member name="M:AZUSA.EmoteNet.Emote.Draw">
             <summary>
-E-mote绘制
+E-mote绘制（作用于全部Player）
 </summary>
         </member>
         <member name="M:AZUSA.EmoteNet.Emote.Update(System.Single)">
             <summary>
-E-mote更新
+E-mote更新（作用于全部Player）
 </summary>
             <param name="frameCount">经过的帧数（frame count）,1/60秒为单位</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DTestCooperativeLevel">
+            <summary>
+Device.TestCooperativeLevel
+</summary>
+            <return>HRESULT</return>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DInitRenderState(System.Int32,System.Int32,System.IntPtr)">
+            <summary>
+D3D初始化渲染状态
+</summary>
+            <param name="screenWidth">宽</param>
+            <param name="screenHeight">高</param>
+            <param name="handle">Direct3D9 Device</param>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DInitRenderState">
+            <summary>
+D3D初始化渲染状态
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.OnDeviceReset">
+            <summary>
+在Device Reset之后可以执行此方法，也可以不使用。会在内部执行<see cref="M:AZUSA.EmoteNet.Emote.D3DInitRenderState" />方法，无需再次执行。
+</summary>
+        </member>
+        <member name="M:AZUSA.EmoteNet.Emote.OnDeviceLost">
+            <summary>
+当Device Lost时，在Reset前执行此方法。会在内部执行<see cref="!:EmoteDevice.OnDeviceLost" />方法，无需再次执行。
+</summary>
         </member>
         <member name="M:AZUSA.EmoteNet.Emote.EmoteInit">
             <summary>
 E-mote初始化
 </summary>
         </member>
+        <member name="M:AZUSA.EmoteNet.Emote.D3DReset">
+            <summary>
+Device.Reset
+</summary>
+        </member>
         <member name="M:AZUSA.EmoteNet.Emote.D3DInit(System.IntPtr,System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
-D3D初始化
+D3D Initialize
 </summary>
             <param name="handle">窗口句柄</param>
             <param name="width">渲染区宽度</param>
@@ -115,6 +159,11 @@ D3D初始化
 E-mote
 <para>使用此版本的构造函数不需要调用<see cref="M:AZUSA.EmoteNet.Emote.D3DInit(System.IntPtr,System.Int32,System.Int32,System.Boolean,System.Boolean)" />和<see cref="M:AZUSA.EmoteNet.Emote.EmoteInit" />。请手动创建DX9设备</para></summary>
             <param name="dxHandle">DX9 Device指针</param>
+        </member>
+        <member name="P:AZUSA.EmoteNet.Emote.Device">
+            <summary>
+EmoteDevice
+</summary>
         </member>
         <member name="M:AZUSA.EmoteNet.Emote.Dispose">
             <summary>
